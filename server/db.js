@@ -5,6 +5,7 @@ var { buildSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema }
 
 // https://www.npmjs.com/package/mysql
 const mysql = require('mysql');
+const { resolve } = require('path');
 var pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
@@ -98,7 +99,7 @@ const root = {
                 }
 
                 const arr = []
-                for (const i = 0; i < results.length; i++) {
+                for (var i = 0; i < results.length; i++) {
                     arr.push({
                         name: results[i].name,
                         sex: results[i].sex,
@@ -106,6 +107,8 @@ const root = {
                         department: results[i].department,
                     })
                 }
+
+                resolve(arr)
             })
         })
     },
